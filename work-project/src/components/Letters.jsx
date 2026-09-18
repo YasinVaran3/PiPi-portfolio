@@ -53,7 +53,7 @@ export default function Letters() {
               <span className="letters-dot" /> {profile.location}
             </p>
 
-            <ul className="letters-socials">
+            {/* <ul className="letters-socials">
               {profile.socials.map((s) => (
                 <li key={s.label}>
                   <a href={s.href} target="_blank" rel="noreferrer">
@@ -61,7 +61,7 @@ export default function Letters() {
                   </a>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </motion.div>
 
           <motion.a

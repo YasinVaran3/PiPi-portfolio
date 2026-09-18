@@ -11,12 +11,12 @@ export const profile = {
     'I animate keys and second keys, build finished colour scenes in OpenToonz, design characters from line art to final paint, and tell little stories in comic panels and chibi moments.',
   ],
   location: 'Available worldwide · Remote',
-  email: 'hello@yourname.com',
+  email: 'zvzv76641@outlook.com',
   tools: ['Clip Studio Paint', 'OpenToonz', 'Timesheets / X-sheets', 'After Effects'],
-  socials: [
-    { label: 'ArtStation', href: '#' },
-    { label: 'Instagram', href: '#' },
-    { label: 'X / Twitter', href: '#' },
-    { label: 'Vimeo', href: '#' },
-  ],
+  // socials: [
+  //   { label: 'ArtStation', href: '#' },
+  //   { label: 'Instagram', href: '#' },
+  //   { label: 'X / Twitter', href: '#' },
+  //   { label: 'Vimeo', href: '#' },
+  // ],
 }
