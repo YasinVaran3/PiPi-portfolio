@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #FFB6C1, #DDA0DD, #87CEEB);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fairy-shadow {
+  box-shadow: 0 8px 32px rgba(75, 0, 130, 0.15), 0 4px 16px rgba(255, 182, 193, 0.2);
+}
+
+.glow-effect {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 0 40px rgba(221, 160, 221, 0.2);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #FFB6C1, #DDA0DD, #87CEEB);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fairy-shadow {
+  box-shadow: 0 8px 32px rgba(75, 0, 130, 0.15), 0 4px 16px rgba(255, 182, 193, 0.2);
+}
+
+.glow-effect {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 0 40px rgba(221, 160, 221, 0.2);
+}

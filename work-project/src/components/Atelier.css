@@ -1,0 +1,472 @@
+.atelier-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(40px, 7vw, 110px);
+}
+
+/* ── the animation disc ── */
+.atelier-disc-wrap {
+  position: relative;
+  width: min(100%, 460px);
+  justify-self: center;
+}
+
+.atelier-disc {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 7%;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.5), transparent 40%),
+    conic-gradient(from 0deg, #b8732a, #ffe7a8, #e9a23b, #fff0c9, #b8732a, #ffd98a, #e9a23b, #ffe7a8, #b8732a);
+  box-shadow:
+    0 50px 100px -40px rgba(255, 143, 112, 0.6),
+    inset 0 0 0 2px rgba(90, 40, 10, 0.4),
+    0 0 0 14px rgba(255, 255, 255, 0.03),
+    0 0 0 15px rgba(255, 200, 107, 0.2);
+  transition: transform 1.6s var(--ease-out);
+}
+
+.atelier-disc-wrap:hover .atelier-disc {
+  transform: rotate(-14deg);
+}
+
+.atelier-disc-ring {
+  position: absolute;
+  inset: 2.5%;
+  border-radius: 50%;
+  animation: orbit 90s linear infinite;
+}
+
+.atelier-disc-ring i {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 50%;
+  margin-left: -1px;
+  transform-origin: 50% 100%;
+}
+
+.atelier-disc-ring i::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 12px;
+  border-radius: 2px;
+  background: rgba(90, 40, 10, 0.55);
+}
+
+.atelier-disc-ring i:nth-child(3n + 1)::before {
+  height: 20px;
+  background: rgba(90, 40, 10, 0.8);
+}
+
+.atelier-paper {
+  position: relative;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #3d1f6e;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.95), transparent 70%),
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(124, 200, 255, 0.25) 27px 28px),
+    #fff6e8;
+  box-shadow: inset 0 0 40px rgba(233, 162, 59, 0.35), inset 0 0 0 3px rgba(90, 40, 10, 0.25);
+}
+
+.atelier-paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 55%, rgba(255, 200, 107, 0.35));
+}
+
+.atelier-pegbar {
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 14%;
+  width: 46%;
+  height: 16px;
+  padding: 0 4%;
+  justify-content: space-between;
+  border-radius: 8px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #d9dee8, #9aa3b5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.atelier-pegbar span {
+  height: 8px;
+  border-radius: 4px;
+  background: #6c7488;
+}
+
+.atelier-pegbar span:nth-child(1),
+.atelier-pegbar span:nth-child(3) {
+  width: 22%;
+}
+
+.atelier-pegbar span:nth-child(2) {
+  width: 8px;
+}
+
+.atelier-mono {
+  position: relative;
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144;
+  font-style: italic;
+  font-size: clamp(80px, 11vw, 150px);
+  line-height: 1;
+  background: linear-gradient(120deg, #ff7eb6, #b9a4ff 50%, #7cc8ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding: 0 0.08em;
+}
+
+.atelier-sign {
+  position: relative;
+  margin-top: 4px;
+  font-size: clamp(22px, 2.6vw, 30px);
+  color: #c74b8f;
+  transform: rotate(-4deg);
+}
+
+.atelier-doodle {
+  position: relative;
+  width: 36%;
+  margin-top: 6px;
+  color: #7cc8ff;
+}
+
+.atelier-doodle path {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: doodle 4.5s ease-in-out infinite;
+}
+
+@keyframes doodle {
+  0% { stroke-dashoffset: 260; }
+  45%, 70% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -260; }
+}
+
+.atelier-pencil {
+  position: absolute;
+  right: 2%;
+  bottom: 10%;
+  width: 34%;
+  height: 16px;
+  border-radius: 3px 0 0 3px;
+  background:
+    linear-gradient(90deg, #ff9fc8 0 12%, #d9dee8 12% 20%, transparent 20%),
+    linear-gradient(180deg, #ffd98a, #ffc86b 50%, #e9a23b);
+  transform: rotate(-38deg);
+  transform-origin: 100% 50%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+  animation: pencil 3s ease-in-out infinite;
+}
+
+.atelier-pencil::after {
+  content: '';
+  position: absolute;
+  right: -22px;
+  top: 0;
+  border-left: 22px solid #f6d6b0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+.atelier-pencil::before {
+  content: '';
+  position: absolute;
+  right: -22px;
+  top: 5px;
+  border-left: 8px solid #3d1f6e;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  z-index: 1;
+}
+
+@keyframes pencil {
+  0%, 100% { transform: rotate(-38deg) translate(0, 0); }
+  30% { transform: rotate(-34deg) translate(-10px, 6px); }
+  60% { transform: rotate(-40deg) translate(6px, -4px); }
+}
+
+/* ── copy ── */
+.atelier-title {
+  font-size: clamp(44px, 6.4vw, 84px);
+  margin: 16px 0 16px;
+}
+
+.atelier-title em {
+  font-style: italic;
+}
+
+.atelier-tagline {
+  margin: 0 0 22px;
+  font-size: clamp(24px, 2.4vw, 30px);
+  line-height: 1.25;
+  color: var(--gold);
+}
+
+.atelier-bio {
+  margin: 0 0 16px;
+  color: var(--text-dim);
+}
+
+.atelier-tools {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.atelier-tools li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.atelier-tools li svg {
+  width: 12px;
+  height: 12px;
+  color: var(--rose);
+}
+
+.atelier-tools li:nth-child(2) svg { color: var(--gold); }
+.atelier-tools li:nth-child(3) svg { color: var(--mint); }
+.atelier-tools li:nth-child(4) svg { color: var(--sky); }
+
+/* ── stats ── */
+.atelier-stats {
+  list-style: none;
+  margin: clamp(70px, 9vw, 120px) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.atelier-stats li {
+  position: relative;
+  padding: 28px 24px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.atelier-stats li::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--c);
+  opacity: 0.16;
+  filter: blur(30px);
+}
+
+.atelier-stats strong {
+  display: block;
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'opsz' 144;
+  font-weight: 400;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1;
+  color: var(--c);
+  font-variant-numeric: tabular-nums;
+}
+
+.atelier-stats li > span {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+/* ── x-sheet pipeline ── */
+.xsheet {
+  margin-top: clamp(70px, 9vw, 120px);
+  padding: clamp(24px, 4vw, 44px);
+  border-radius: 32px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(255, 255, 255, 0.045) 31px 32px),
+    linear-gradient(160deg, rgba(255, 143, 112, 0.08), rgba(185, 164, 255, 0.06));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.xsheet-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px 30px;
+  margin-bottom: 26px;
+}
+
+.xsheet-head h3 {
+  font-size: clamp(28px, 3.4vw, 42px);
+}
+
+.xsheet-head p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 22px;
+  color: var(--gold);
+}
+
+.xsheet-legend {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, var(--rose), var(--gold));
+}
+
+.xsheet-track {
+  position: relative;
+  padding-top: 100px;
+}
+
+.xsheet-ball {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 100px;
+  animation: ball-travel 7s ease-in-out infinite alternate;
+}
+
+.xsheet-ball span {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #fff7fb, #ffc86b 45%, #ff8f70);
+  box-shadow: 0 0 16px rgba(255, 200, 107, 0.7);
+  transform-origin: 50% 100%;
+  animation: ball-squash 0.875s infinite;
+}
+
+@keyframes ball-travel {
+  from { left: 0; }
+  to { left: calc(100% - 26px); }
+}
+
+.xsheet-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  border-top: 2px dashed rgba(255, 255, 255, 0.18);
+  padding-top: 22px;
+}
+
+.xsheet-steps li {
+  position: relative;
+  padding: 18px 16px 20px;
+  border-radius: 18px;
+  background: rgba(13, 8, 38, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+  opacity: 0.72;
+}
+
+.xsheet-steps li.is-mine {
+  opacity: 1;
+  background:
+    linear-gradient(160deg, rgba(255, 126, 182, 0.2), rgba(255, 200, 107, 0.08)) padding-box,
+    linear-gradient(#1f1340, #1f1340) padding-box,
+    linear-gradient(140deg, var(--rose), var(--gold)) border-box;
+  border: 1px solid transparent;
+  box-shadow: 0 20px 40px -24px rgba(255, 126, 182, 0.7);
+}
+
+.xsheet-num {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--text-faint);
+}
+
+.xsheet-jp {
+  display: block;
+  margin: 8px 0 2px;
+  font-size: 13px;
+  color: var(--gold);
+}
+
+.xsheet-steps strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.xsheet-steps p {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+@media (max-width: 1080px) {
+  .xsheet-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .atelier-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .atelier-tools {
+    justify-content: center;
+  }
+  .atelier-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .atelier-disc-wrap {
+    width: min(82vw, 380px);
+  }
+}
+
+@media (max-width: 560px) {
+  .xsheet-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .atelier-stats li {
+    padding: 20px 16px;
+  }
+}
