@@ -1,4 +1,4 @@
-// Each category is a small world with its own colour and mood.
+// Portfolio categories. Accents are shades of the site's blue palette.
 // Files live in /public/media:
 //   video → <slug>.mp4 + <slug>.jpg (poster)
 //   image → <slug>.jpg (full) + <slug>-sm.jpg (thumbnail)
@@ -9,9 +9,9 @@ export const chapters = [
     numeral: 'I',
     title: 'Animation',
     craft: 'Key Animation · Second Key · Effects',
-    lede: 'Where drawings learn to breathe. Rough keys full of energy, clean second keys ready for the inbetweeners, and action that cuts through the frame with smears and sparks.',
-    accent: '#b9a4ff',
-    accent2: '#7cc8ff',
+    lede: 'Rough keys, clean second keys ready for inbetweening, and effects-driven action with smears and impact frames.',
+    accent: '#8fb4ec',
+    accent2: '#5f8fd6',
     emblem: 'film',
     layout: 'grid',
   },
@@ -20,9 +20,9 @@ export const chapters = [
     numeral: 'II',
     title: 'Character Design',
     craft: 'Illustration · Line Art · Colour',
-    lede: 'Faces, outfits and attitudes given a life of their own — from the first clean line to glowing eyes, soft gradients and crackling light.',
-    accent: '#ff7eb6',
-    accent2: '#ffb38a',
+    lede: 'Character illustration from clean line art to finished colour, lighting and effects.',
+    accent: '#a9bdf2',
+    accent2: '#7c93dc',
     emblem: 'palette',
     layout: 'gallery',
   },
@@ -31,9 +31,9 @@ export const chapters = [
     numeral: 'III',
     title: 'Comic Book',
     craft: 'Paneling · Expressions · Storytelling',
-    lede: 'Open the book and take a seat: a story told one panel at a time, where every laugh builds to the next.',
-    accent: '#ffc86b',
-    accent2: '#ff8f70',
+    lede: 'Paneling, pacing and expression — stories told one page at a time.',
+    accent: '#9fd0f0',
+    accent2: '#5e9fcf',
     emblem: 'book',
     layout: 'book',
   },
@@ -42,9 +42,9 @@ export const chapters = [
     numeral: 'IV',
     title: 'OpenToonz',
     craft: 'Full Colour Animation · Acting · Sound',
-    lede: 'Finished scenes animated in OpenToonz: painted skies, battles between heroes and machines, and a princess whose tears turn to resolve.',
-    accent: '#5ee0ff',
-    accent2: '#8f8cff',
+    lede: 'Finished full-colour scenes in OpenToonz: action, character acting and sound.',
+    accent: '#7fc4e6',
+    accent2: '#4f86c6',
     emblem: 'reel',
     layout: 'grid',
   },
@@ -53,9 +53,9 @@ export const chapters = [
     numeral: 'V',
     title: 'Other Works',
     craft: 'Chibi Animation · Motion Illustration',
-    lede: 'Little stories and experiments — tiny chibi moments with the key poses behind them, and an ink-dark illustration brought to life for the vertical screen.',
-    accent: '#6ef0c8',
-    accent2: '#7cc8ff',
+    lede: 'Chibi animation with key poses, and motion illustration for vertical formats.',
+    accent: '#b7cdf0',
+    accent2: '#6f8fd0',
     emblem: 'moon',
     layout: 'mixed',
   },
@@ -295,7 +295,7 @@ export const works = [
   { slug: 'lucky-find-key-1', chapter: 'other', type: 'image', hidden: true, title: 'Lucky Find · Key Pose', role: 'Key Pose', note: 'The guilty moment — sweat drop, blush and a hand frozen over the cash.', width: 520, height: 448 },
 ]
 
-// A before / after pair for the Metamorphosis Mirror.
+// A before / after pair for the Process comparison.
 export const mirrorPair = {
   before: 'nightbloom-first-key',
   after: 'nightbloom-second-key',
@@ -318,3 +318,19 @@ export const worksIn = (chapterId) => visibleWorks.filter((w) => w.chapter === c
 export const totalFrames = works.reduce((sum, w) => sum + (w.frames || 0), 0)
 export const imageCount = visibleWorks.filter((w) => w.type === 'image').length + works.filter((w) => w.compareWith).length
 export const videoCount = visibleWorks.filter((w) => w.type === 'video').length
+
+// Characters from the work, shown together in the footer. fx / fy is the face, z the zoom.
+export const cast = [
+  { slug: 'crimson-invitation', fx: 46, fy: 12, z: 2.6 },
+  { slug: 'pastel-peace', fx: 44, fy: 24, z: 2.2 },
+  { slug: 'tears-of-the-tide-princess', fx: 22, fy: 40, z: 2.2 },
+  { slug: 'starlight-gaze', fx: 58, fy: 52, z: 1.4 },
+  { slug: 'electric-resolve', fx: 38, fy: 26, z: 2.6 },
+  { slug: 'midnight-blue', fx: 46, fy: 11, z: 3.2 },
+  { slug: 'peekaboo-prince', fx: 62, fy: 24, z: 2.6 },
+  { slug: 'the-princess-turns-away', fx: 50, fy: 44, z: 1.5 },
+  { slug: 'a-rose-for-you', fx: 66, fy: 42, z: 2.8 },
+  { slug: 'lucky-find', fx: 60, fy: 36, z: 2.2 },
+  { slug: 'movie-night-colour', fx: 51, fy: 37, z: 3.2 },
+  { slug: 'shadow-oath', fx: 50, fy: 20, z: 2.2 },
+]

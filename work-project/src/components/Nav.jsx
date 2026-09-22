@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useActiveSection } from '../hooks'
 import { profile } from '../data/profile'
@@ -6,21 +6,25 @@ import { Icon } from './Icons'
 import './Nav.css'
 
 const LINKS = [
-  { id: 'prologue', label: 'Prologue' },
-  { id: 'chapters', label: 'Chapters' },
-  { id: 'mirror', label: 'Mirror' },
-  { id: 'atelier', label: 'Atelier' },
-  { id: 'letters', label: 'Letters' },
+  { id: 'work', label: 'Work' },
+  { id: 'process', label: 'Process' },
+  { id: 'about', label: 'About' },
+  { id: 'contact', label: 'Contact' },
 ]
-const IDS = LINKS.map((l) => l.id)
+const IDS = ['top', ...LINKS.map((l) => l.id)]
 
 export default function Nav() {
   const active = useActiveSection(IDS)
   const [scrolled, setScrolled] = useState(false)
   const [menu, setMenu] = useState(false)
+  const barRef = useRef(null)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24)
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      if (barRef.current) barRef.current.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -34,58 +38,58 @@ export default function Nav() {
     <>
       <header className={`nav ${scrolled ? 'is-scrolled' : ''}`}>
         <div className="nav-inner">
-          <a href="#prologue" className="nav-brand" aria-label="Back to the beginning">
-            <span className="nav-mono">
-              <Icon.Sparkle className="nav-mono-star" />
-              <span>{profile.monogram}</span>
-            </span>
+          <a href="#top" className="nav-brand" aria-label="Back to top">
+            <span className="nav-mono">{profile.monogram}</span>
             <span className="nav-brand-text">
-              {profile.name} <em>· Once Upon a Frame</em>
+              {profile.name}
+              <em>{profile.title}</em>
             </span>
           </a>
 
           <nav className="nav-links" aria-label="Sections">
             {LINKS.map((l) => (
               <a key={l.id} href={`#${l.id}`} className={active === l.id ? 'is-active' : ''}>
-                {active === l.id && (
-                  <motion.span layoutId="nav-glow" className="nav-glow" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />
-                )}
-                <span className="nav-label">{l.label}</span>
+                {l.label}
               </a>
             ))}
           </nav>
 
+          <a href={`mailto:${profile.email}`} className="btn btn-ghost nav-cta">
+            Get in touch
+          </a>
+
           <button className="nav-burger" onClick={() => setMenu(true)} aria-label="Open menu">
-            <span />
             <span />
             <span />
           </button>
         </div>
+        <span className="nav-progress" aria-hidden>
+          <i ref={barRef} />
+        </span>
       </header>
 
       <AnimatePresence>
         {menu && (
           <motion.div
             className="nav-sheet"
-            initial={{ clipPath: 'circle(0% at 92% 4%)' }}
-            animate={{ clipPath: 'circle(150% at 92% 4%)' }}
-            exit={{ clipPath: 'circle(0% at 92% 4%)' }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
           >
             <button className="nav-close" onClick={() => setMenu(false)} aria-label="Close menu">
               <Icon.Close />
             </button>
-            <p className="hand nav-sheet-note">turn to a page…</p>
             <ol>
               {LINKS.map((l, i) => (
                 <motion.li
                   key={l.id}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 + i * 0.07, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ delay: 0.05 + i * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <a href={`#${l.id}`} onClick={() => setMenu(false)}>
-                    <span className="nav-sheet-num">{String(i + 1).padStart(2, '0')}</span>
+                    <span>{String(i + 1).padStart(2, '0')}</span>
                     {l.label}
                   </a>
                 </motion.li>

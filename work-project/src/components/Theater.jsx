@@ -156,8 +156,6 @@ function Player({ work, onClose, onNavigate }) {
         exit={{ y: 40, scale: 0.96, opacity: 0 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="theater-valance" aria-hidden />
-
         <div className="theater-top">
           <span className="theater-chapter">
             <b>{chapter.numeral}</b> {chapter.title}
@@ -260,7 +258,7 @@ function Player({ work, onClose, onNavigate }) {
           </div>
 
           <aside className="theater-notes">
-            <p className="hand theater-role">{work.role}</p>
+            <p className="theater-role">{work.role}</p>
             <h2 className="theater-title">{work.title}</h2>
             {work.code && <p className="theater-code">{work.code}</p>}
             <p className="theater-note">{work.note}</p>

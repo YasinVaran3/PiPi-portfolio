@@ -1,0 +1,162 @@
+.work-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.work-filters button {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work-filters button:hover {
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+.work-filters button.is-on {
+  color: var(--navy-900);
+  box-shadow: none;
+}
+
+.work-filter-label,
+.work-filters sup {
+  position: relative;
+  z-index: 1;
+}
+
+.work-filters sup {
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.work-filter-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--frost), var(--ice));
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 1.1vw, 16px);
+}
+
+/* ── tile: image only, no text ── */
+.tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, var(--navy-700), var(--navy-900));
+  box-shadow: 0 0 0 1px var(--line), 0 18px 40px -26px rgba(8, 18, 40, 0.9);
+  transition: box-shadow 0.45s ease, transform 0.6s var(--ease-out);
+}
+
+.tile img,
+.tile video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--pos);
+  transition: transform 1s var(--ease-out), opacity 0.4s ease;
+}
+
+.tile video {
+  opacity: 0;
+}
+
+.tile.is-playing video {
+  opacity: 1;
+}
+
+.tile::after {
+  /* hairline inner edge so white line art still reads as a framed tile */
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(20, 38, 74, 0.18);
+  pointer-events: none;
+}
+
+.tile-light {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(169, 220, 255, 0.22), transparent 65%);
+  transition: opacity 0.4s ease;
+}
+
+.tile-icon {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--navy-900);
+  background: rgba(220, 233, 250, 0.92);
+  opacity: 0;
+  transform: translateY(6px) scale(0.9);
+  transition: opacity 0.35s ease, transform 0.5s var(--ease-spring);
+}
+
+.tile-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 70%, transparent), 0 26px 50px -24px rgba(8, 18, 40, 0.95);
+}
+
+.tile:hover img,
+.tile:hover video {
+  transform: scale(1.045);
+}
+
+.tile:hover .tile-light,
+.tile:hover .tile-icon,
+.tile:focus-visible .tile-icon {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 1024px) {
+  .work-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .work-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .tile-icon {
+    opacity: 1;
+    transform: none;
+    width: 28px;
+    height: 28px;
+  }
+}
