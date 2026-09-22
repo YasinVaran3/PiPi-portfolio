@@ -83,7 +83,7 @@
   z-index: 2;
   padding: clamp(40px, 5vw, 64px) 0 28px;
   border-top: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(20, 38, 74, 0.2), rgba(20, 38, 74, 0.55));
+  background: linear-gradient(180deg, rgba(14, 10, 24, 0.2), rgba(14, 10, 24, 0.55));
 }
 
 .cast-label {
@@ -112,7 +112,7 @@
   overflow: hidden;
   border-radius: 50%;
   background: var(--navy-700);
-  box-shadow: 0 0 0 1px rgba(220, 233, 250, 0.22), 0 0 0 4px rgba(20, 38, 74, 0.6), 0 14px 26px -14px rgba(8, 18, 40, 0.9);
+  box-shadow: 0 0 0 1px rgba(220, 233, 250, 0.22), 0 0 0 4px rgba(14, 10, 24, 0.6), 0 14px 26px -14px rgba(0, 0, 0, 0.9);
   transition: transform 0.5s var(--ease-out), box-shadow 0.4s ease;
 }
 
@@ -127,7 +127,7 @@
 /* dock-style lift: the hovered face rises, its neighbours lean in */
 .cast-row li:hover button {
   transform: translateY(-10px) scale(1.14);
-  box-shadow: 0 0 0 1.5px var(--glow), 0 0 22px -2px rgba(169, 220, 255, 0.55), 0 18px 30px -14px rgba(8, 18, 40, 0.9);
+  box-shadow: 0 0 0 1.5px var(--glow), 0 0 22px -2px rgba(169, 220, 255, 0.55), 0 18px 30px -14px rgba(0, 0, 0, 0.9);
 }
 
 .cast-row li:has(+ li:hover) button,

@@ -34,7 +34,7 @@ function ImageStage({ work }) {
         setOrigin(`${((e.clientX - r.left) / r.width) * 100}% ${((e.clientY - r.top) / r.height) * 100}%`)
       }}
     >
-      <img key={work.slug} src={media(work.slug).src} alt={work.title} style={{ transformOrigin: origin }} draggable="false" />
+      <img key={work.slug} src={media(work.slug).src} alt="" style={{ transformOrigin: origin }} draggable="false" />
       <span className="theater-zoom-hint">
         <Icon.ZoomIn /> {zoom ? 'Click to fit' : 'Click to zoom'}
       </span>
@@ -138,7 +138,7 @@ function Player({ work, onClose, onNavigate }) {
       className="theater"
       role="dialog"
       aria-modal="true"
-      aria-label={`${work.title} — theater`}
+      aria-label="Viewer"
       style={{ '--accent': chapter.accent, '--accent2': chapter.accent2 }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -161,10 +161,10 @@ function Player({ work, onClose, onNavigate }) {
             <b>{chapter.numeral}</b> {chapter.title}
           </span>
           <div className="theater-top-actions">
-            <button className="theater-round" onClick={() => onNavigate(prev.slug)} aria-label={`Previous: ${prev.title}`}>
+            <button className="theater-round" onClick={() => onNavigate(prev.slug)} aria-label="Previous piece">
               <Icon.ChevronLeft />
             </button>
-            <button className="theater-round" onClick={() => onNavigate(next.slug)} aria-label={`Next: ${next.title}`}>
+            <button className="theater-round" onClick={() => onNavigate(next.slug)} aria-label="Next piece">
               <Icon.ChevronRight />
             </button>
             <button className="theater-round theater-close" onClick={onClose} aria-label="Close theater">
@@ -257,70 +257,21 @@ function Player({ work, onClose, onNavigate }) {
             )}
           </div>
 
-          <aside className="theater-notes">
-            <p className="theater-role">{work.role}</p>
-            <h2 className="theater-title">{work.title}</h2>
-            {work.code && <p className="theater-code">{work.code}</p>}
-            <p className="theater-note">{work.note}</p>
-
+          <div className="theater-foot">
             {family.length > 1 && (
               <div className="theater-family">
-                <span>{anchor.keys ? 'Animation & key poses' : 'Colour & line art'}</span>
-                <div>
-                  {family.map((slug) => {
-                    const w = workBySlug[slug]
-                    return (
-                      <button key={slug} className={slug === work.slug ? 'is-on' : ''} onClick={() => onNavigate(slug)} aria-label={w.title} title={w.title}>
-                        <img src={media(slug).poster} alt="" />
-                        {w.type === 'video' && (
-                          <i>
-                            <Icon.Play />
-                          </i>
-                        )}
-                      </button>
-                    )
-                  })}
-                </div>
+                {family.map((slug, i) => (
+                  <button key={slug} className={slug === work.slug ? 'is-on' : ''} onClick={() => onNavigate(slug)} aria-label={`Related view ${i + 1}`}>
+                    <img src={media(slug).poster} alt="" />
+                    {workBySlug[slug].type === 'video' && (
+                      <i>
+                        <Icon.Play />
+                      </i>
+                    )}
+                  </button>
+                ))}
               </div>
             )}
-
-            <dl className="theater-specs">
-              {isImage ? (
-                <>
-                  <div>
-                    <dt>Type</dt>
-                    <dd>Still</dd>
-                  </div>
-                  <div>
-                    <dt>Canvas</dt>
-                    <dd>
-                      {work.width}×{work.height}
-                    </dd>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div>
-                    <dt>Frame rate</dt>
-                    <dd>{work.fps} fps</dd>
-                  </div>
-                  <div>
-                    <dt>Frames</dt>
-                    <dd>{work.frames}</dd>
-                  </div>
-                  <div>
-                    <dt>Duration</dt>
-                    <dd>{(work.frames / work.fps).toFixed(2)}s</dd>
-                  </div>
-                  <div>
-                    <dt>Canvas</dt>
-                    <dd>
-                      {work.width}×{work.height}
-                    </dd>
-                  </div>
-                </>
-              )}
-            </dl>
             <p className="theater-keys">
               {isImage ? (
                 <>
@@ -335,7 +286,7 @@ function Player({ work, onClose, onNavigate }) {
                 </>
               )}
             </p>
-          </aside>
+          </div>
         </div>
       </motion.div>
     </motion.div>

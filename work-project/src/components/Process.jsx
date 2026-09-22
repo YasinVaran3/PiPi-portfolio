@@ -63,7 +63,7 @@ export default function Process({ onWatch }) {
             </h2>
           </Reveal>
           <Reveal as="p" delay={0.1}>
-            {mirrorPair.title} ({mirrorPair.code}). Drag the divider to compare the rough key drawings with the refined second key, frame for frame.
+            Drag the divider to compare the rough key drawings with the refined second key, frame for frame.
           </Reveal>
         </div>
 

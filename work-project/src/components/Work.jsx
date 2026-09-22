@@ -9,7 +9,7 @@ import './Work.css'
 const ease = [0.16, 1, 0.3, 1]
 const FILTERS = [{ id: 'all', title: 'All work' }, ...chapters]
 
-function Tile({ work, onWatch }) {
+function Tile({ work, index, onWatch }) {
   const videoRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const isVideo = work.type === 'video'
@@ -36,7 +36,7 @@ function Tile({ work, onWatch }) {
       onPointerMove={trackPointer}
       onPointerEnter={enter}
       onPointerLeave={leave}
-      aria-label={`Open ${work.title}`}
+      aria-label={`Open piece ${index + 1}`}
     >
       <img src={poster} alt="" loading="lazy" />
       {isVideo && <video ref={videoRef} src={src} muted loop playsInline preload="none" onPlaying={() => setPlaying(true)} />}
@@ -94,7 +94,7 @@ export default function Work({ onWatch }) {
                 transition={{ duration: 0.5, ease, delay: Math.min(i, 8) * 0.025 }}
               >
                 <Reveal delay={(i % 4) * 0.06}>
-                  <Tile work={w} onWatch={onWatch} />
+                  <Tile work={w} index={i} onWatch={onWatch} />
                 </Reveal>
               </motion.div>
             ))}

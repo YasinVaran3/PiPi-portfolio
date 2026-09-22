@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { profile } from '../data/profile'
-import { cast, media, workBySlug } from '../data/works'
+import { cast, media } from '../data/works'
 import { Icon } from './Icons'
 import Reveal from './Reveal'
 import './Contact.css'
@@ -14,27 +14,28 @@ function Cast({ onWatch }) {
     <div className="cast">
       <p className="cast-label">The cast</p>
       <ul className="cast-row">
-        {cast.map((c, i) => {
-          const w = workBySlug[c.slug]
-          return (
-            <motion.li
-              key={c.slug}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '0px 0px -40px 0px' }}
-              transition={{ duration: 0.8, delay: i * 0.05, ease }}
-            >
-              <button onClick={() => onWatch(c.slug)} aria-label={`Open ${w.title}`} title={w.title}>
-                <img
-                  src={media(c.slug).poster}
-                  alt=""
-                  loading="lazy"
-                  style={{ objectPosition: `${c.fx}% ${c.fy}%`, transformOrigin: `${c.fx}% ${c.fy}%`, '--z': c.z }}
-                />
-              </button>
-            </motion.li>
-          )
-        })}
+        {cast.map((c, i) => (
+          <motion.li
+            key={c.slug}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '0px 0px -40px 0px' }}
+            transition={{ duration: 0.8, delay: i * 0.05, ease }}
+          >
+            <button onClick={() => onWatch(c.slug)} aria-label={`Open character ${i + 1}`}>
+              <img
+                src={media(c.slug).poster}
+                alt=""
+                loading="lazy"
+                style={{
+                  objectPosition: `${c.fx}% ${c.fy}%`,
+                  transformOrigin: `${c.fx}% ${c.fy}%`,
+                  '--z': c.z,
+                }}
+              />
+            </button>
+          </motion.li>
+        ))}
       </ul>
     </div>
   )

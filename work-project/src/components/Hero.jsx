@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { profile } from '../data/profile'
-import { chapters, imageCount, media, totalFrames, videoCount, workBySlug } from '../data/works'
+import { chapters, imageCount, media, totalFrames, videoCount } from '../data/works'
 import { hoverPlay, trackPointer } from '../hooks'
 import { Icon } from './Icons'
 import './Hero.css'
@@ -23,7 +23,6 @@ const fade = (delay) => ({
 
 export default function Hero({ onWatch }) {
   const videoRef = useRef(null)
-  const reel = workBySlug[REEL]
 
   const stats = [
     { value: totalFrames.toLocaleString(), label: 'Frames drawn' },
@@ -85,7 +84,7 @@ export default function Hero({ onWatch }) {
               onClick={() => onWatch(REEL)}
               onPointerMove={trackPointer}
               {...hoverPlay(videoRef)}
-              aria-label={`Play ${reel.title}`}
+              aria-label="Play showreel"
             >
               <video ref={videoRef} src={media(REEL).src} poster={media(REEL).poster} muted loop playsInline preload="metadata" />
               <span className="hero-frame-light" aria-hidden />
@@ -94,9 +93,6 @@ export default function Hero({ onWatch }) {
               </span>
             </button>
           </motion.div>
-          <motion.p className="hero-caption" {...fade(0.9)}>
-            <span>Featured</span> {reel.title} — {reel.role}
-          </motion.p>
         </div>
       </div>
     </section>
